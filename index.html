@@ -177,7 +177,7 @@
             statusMessage.style.display = 'none';
             
             // Send email using EmailJS
-            emailjs.sendForm('service_7e3vcji', 'YOUR_TEMPLATE_ID', form)
+            emailjs.sendForm('service_7e3vcji', 'template_5otrw5c', form)
                 .then(function(response) {
                     console.log('SUCCESS!', response.status, response.text);
                     showMessage('Message sent successfully!', 'success');
@@ -204,4 +204,5 @@
     </script>
 </body>
 </html>
+
 
