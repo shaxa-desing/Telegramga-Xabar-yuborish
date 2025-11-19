@@ -2,21 +2,21 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Contact Form</title>
 </head>
 <body>
-    <form action="contact.php" method="POST">
-    <label>Name</label>
-    <input type="text" name="name" required>
+    <h2>Contact Form</h2>
+    <form action="/send" method="POST">
+        <label>Name</label><br>
+        <input type="text" name="name" required><br><br>
 
-    <label>Email</label>
-    <input type="email" name="email" required>
+        <label>Email</label><br>
+        <input type="email" name="email" required><br><br>
 
-    <label>Message</label>
-    <input type="text" name="message" required>
+        <label>Message</label><br>
+        <textarea name="message" required></textarea><br><br>
 
-    <button type="submit">Send</button>
-</form>
+        <button type="submit">Send</button>
+    </form>
 </body>
 </html>
