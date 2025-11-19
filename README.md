@@ -2,21 +2,266 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Contact Form</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Get In Touch</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(to bottom right, #1a1a2e, #16213e, #0f3460);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .form-wrapper {
+            background: rgba(255, 255, 255, 0.95);
+            padding: 50px 40px;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            width: 90%;
+            max-width: 550px;
+            backdrop-filter: blur(10px);
+        }
+
+        .form-header {
+            text-align: center;
+            margin-bottom: 35px;
+        }
+
+        .form-header h1 {
+            color: #1a1a2e;
+            font-size: 32px;
+            margin-bottom: 8px;
+            font-weight: 700;
+        }
+
+        .form-header p {
+            color: #666;
+            font-size: 15px;
+            margin: 0;
+        }
+
+        .alert-box {
+            background: #e7f3ff;
+            border-left: 5px solid #2196F3;
+            padding: 15px;
+            margin-bottom: 25px;
+            border-radius: 5px;
+            font-size: 13px;
+            line-height: 1.6;
+        }
+
+        .alert-box strong {
+            display: block;
+            margin-bottom: 5px;
+            color: #1976D2;
+        }
+
+        .alert-box a {
+            color: #1976D2;
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .input-group {
+            margin-bottom: 25px;
+        }
+
+        .input-group label {
+            display: block;
+            color: #333;
+            font-weight: 600;
+            margin-bottom: 8px;
+            font-size: 14px;
+        }
+
+        .input-group input,
+        .input-group textarea {
+            width: 100%;
+            padding: 15px;
+            border: 2px solid #e0e0e0;
+            border-radius: 10px;
+            font-size: 15px;
+            font-family: inherit;
+            transition: all 0.3s ease;
+            background: white;
+        }
+
+        .input-group input:focus,
+        .input-group textarea:focus {
+            outline: none;
+            border-color: #0f3460;
+            box-shadow: 0 0 0 3px rgba(15, 52, 96, 0.1);
+        }
+
+        .input-group textarea {
+            min-height: 140px;
+            resize: vertical;
+        }
+
+        .submit-btn {
+            width: 100%;
+            padding: 16px;
+            background: linear-gradient(135deg, #0f3460, #16213e);
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-size: 17px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(15, 52, 96, 0.4);
+        }
+
+        .submit-btn:active {
+            transform: translateY(-1px);
+        }
+
+        .submit-btn:disabled {
+            background: #ccc;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .notification {
+            margin-top: 20px;
+            padding: 15px;
+            border-radius: 10px;
+            text-align: center;
+            font-weight: 600;
+            display: none;
+            animation: slideIn 0.3s ease;
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .notification.success {
+            background: #d4edda;
+            color: #155724;
+            border: 2px solid #c3e6cb;
+        }
+
+        .notification.error {
+            background: #f8d7da;
+            color: #721c24;
+            border: 2px solid #f5c6cb;
+        }
+
+        .required {
+            color: #e74c3c;
+        }
+    </style>
 </head>
 <body>
-    <h2>Contact Form</h2>
-    <form action="/send" method="POST">
-        <label>Name</label><br>
-        <input type="text" name="name" required><br><br>
+    <div class="form-wrapper">
+        <div class="form-header">
+            <h1>Contact Us</h1>
+            <p>We'd love to hear from you</p>
+        </div>
 
-        <label>Email</label><br>
-        <input type="email" name="email" required><br><br>
+        <div class="alert-box">
+            <strong>⚙️ Setup Required:</strong>
+            Replace YOUR_SERVICE_ID, YOUR_TEMPLATE_ID, and YOUR_PUBLIC_KEY with your actual EmailJS credentials. 
+            <a href="https://www.emailjs.com" target="_blank">Sign up here</a>
+        </div>
 
-        <label>Message</label><br>
-        <textarea name="message" required></textarea><br><br>
+        <form id="mainForm">
+            <div class="input-group">
+                <label for="fullname">Full Name <span class="required">*</span></label>
+                <input type="text" id="fullname" name="name" placeholder="John Doe" required>
+            </div>
 
-        <button type="submit">Send</button>
-    </form>
+            <div class="input-group">
+                <label for="useremail">Email Address <span class="required">*</span></label>
+                <input type="email" id="useremail" name="email" placeholder="john@example.com" required>
+            </div>
+
+            <div class="input-group">
+                <label for="phone">Phone Number</label>
+                <input type="tel" id="phone" name="phone" placeholder="+1 (555) 123-4567">
+            </div>
+
+            <div class="input-group">
+                <label for="topic">Subject <span class="required">*</span></label>
+                <input type="text" id="topic" name="subject" placeholder="How can we help you?" required>
+            </div>
+
+            <div class="input-group">
+                <label for="usermessage">Your Message <span class="required">*</span></label>
+                <textarea id="usermessage" name="message" placeholder="Type your message here..." required></textarea>
+            </div>
+
+            <button type="submit" class="submit-btn" id="sendBtn">Send Message</button>
+        </form>
+
+        <div class="notification" id="notification"></div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/emailjs-com/3.2.0/email.min.js"></script>
+    <script>
+        // Initialize EmailJS - Replace with your actual public key
+        emailjs.init('R3bRefHqkHVDgYnfE');
+
+        const contactForm = document.getElementById('mainForm');
+        const sendButton = document.getElementById('sendBtn');
+        const notificationBox = document.getElementById('notification');
+
+        contactForm.addEventListener('submit', function(event) {
+            event.preventDefault();
+
+            // Disable button and show loading
+            sendButton.disabled = true;
+            sendButton.textContent = 'Sending...';
+            hideNotification();
+
+            // Send the form data via EmailJS
+            emailjs.sendForm('service_7e3vcji', 'template_5otrw5c', contactForm)
+                .then(function(response) {
+                    console.log('Email sent successfully!', response.status, response.text);
+                    showNotification('✓ Your message has been sent successfully!', 'success');
+                    contactForm.reset();
+                })
+                .catch(function(error) {
+                    console.error('Email sending failed:', error);
+                    showNotification('✗ Failed to send message. Please check your setup or try again.', 'error');
+                })
+                .finally(function() {
+                    sendButton.disabled = false;
+                    sendButton.textContent = 'Send Message';
+                });
+        });
+
+        function showNotification(message, type) {
+            notificationBox.textContent = message;
+            notificationBox.className = 'notification ' + type;
+            notificationBox.style.display = 'block';
+
+            setTimeout(function() {
+                hideNotification();
+            }, 6000);
+        }
+
+        function hideNotification() {
+            notificationBox.style.display = 'none';
+        }
+    </script>
 </body>
 </html>
